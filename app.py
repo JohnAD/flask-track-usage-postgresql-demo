@@ -29,8 +29,8 @@ app.jinja_env.filters['datetime'] = datetimeformat
 #
 #########################
 
-app.config['SQLALCHEMY_DATABASE_URI'] = \
-    'postgresql+psycopg2://temp:temp@localhost/track_usage_test'
+SQL_URI = os.environ.get("SQL_URI", "NOT_SET")
+app.config['SQLALCHEMY_DATABASE_URI'] = SQL_URI
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 sql_db = SQLAlchemy(app)
 
