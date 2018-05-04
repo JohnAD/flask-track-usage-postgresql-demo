@@ -1,0 +1,98 @@
+<html>
+    <body>
+        <p>
+            <h2>UserAgent Traffic Analysis</h2>
+            (last 40 entries)
+        </p>
+
+        <table border="1">
+            <tr>
+                <th colspan="4">
+                    RECENT USERAGENTS SEEN (HOURLY)
+                </th>
+            </tr>
+            <tr>
+                <th style="width: 10em">
+                    Hour
+                </th>
+                <th style="width: 10em">
+                    User Agent
+                </th>
+                <th style="width: 10em">
+                    Visits
+                </th>
+                <th style="width: 10em">
+                    Transfer
+                </th>
+            </tr>
+            {% for entry in stats['hour'] %}
+            <tr>
+                <td>
+                    {{entry.date | datetime }}
+                </td>
+                <td>
+                    {{entry.user_agent_string}}
+                </td>
+                <td>
+                    {{entry.hits}}
+                </td>
+                <td>
+                    {{entry.transfer}}
+                </td>
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="4">
+                    <i>no stats yet</i>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+        <table border="1">
+            <tr>
+                <th colspan="4">
+                    RECENT USERAGENTS SEEN (MONTHLY)
+                </th>
+            </tr>
+            <tr>
+                <th style="width: 10em">
+                    Month
+                </th>
+                <th style="width: 10em">
+                    User Agent
+                </th>
+                <th style="width: 10em">
+                    Visits
+                </th>
+                <th style="width: 10em">
+                    Transfer
+                </th>
+            </tr>
+            {% for entry in stats['month'] %}
+            <tr>
+                <td>
+                    {{entry.date | datetime(format='%Y-%m')}}
+                </td>
+                <td>
+                    {{entry.user_agent_string}}
+                </td>
+                <td>
+                    {{entry.hits}}
+                </td>
+                <td>
+                    {{entry.transfer}}
+                </td>
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="4">
+                    <i>no stats yet</i>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+        <p>
+            <a href="/">Back to main</a>
+        </p>
+    </body>
+</html>
